@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" readonly id="input_feild">
+    <button id="button">Click here to Generate random password</button>
+    <br>
+    <input type="checkbox" id="number">
+    <label for="number">click here to add number</label><br>
+    <input type="checkbox" id="special">
+    <label for="special">click to include special characters</label>
+
+</body>
+
+<script>
+    const inputFeild = document.getElementById("input_feild");
+    const button = document.getElementById("button");
+    const includeNumber = document.getElementById("number");
+    const includeSpecial = document.getElementById("special");
+    
+
+
+
+    const numbers = "0123456789"
+    const special = "!~@#$%^&*()_+";
+   const character = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+
+    function generatePassword (){
+        let alphabet = character;
+
+        if(includeNumber.checked){
+            alphabet = alphabet+numbers
+        }
+        if(includeSpecial.checked){
+            alphabet = alphabet+special
+        }
+        password = "";
+        for(let i=0;i<8;i++){
+            password +=alphabet[Math.floor(Math.random()*alphabet.length)]
+        }
+        return password;
+    }
+
+    button.addEventListener("click",()=>{
+        inputFeild.value = generatePassword();
+    })
+</script>
+</html>
